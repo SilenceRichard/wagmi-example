@@ -2,6 +2,8 @@
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { SendTransaction } from "@/app/send-transaction";
+import { ReadContract } from "@/app/react-contract";
+import { WriteContract } from '@/app/react-write-contract';
 
 function App() {
   const account = useAccount();
@@ -45,6 +47,14 @@ function App() {
       <div>
         <h2>Send Transaction</h2>
         <SendTransaction />
+      </div>
+      <div>
+        <h2>Read Contract</h2>
+        <ReadContract />
+      </div>
+      <div>
+        <h2>Write Contract</h2>
+        <WriteContract/>
       </div>
     </>
   );

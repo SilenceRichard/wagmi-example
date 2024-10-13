@@ -3,7 +3,7 @@ import { useSendTransaction } from "wagmi";
 import { parseEther } from "viem";
 
 export function SendTransaction() {
-  const { data: hash, sendTransaction } = useSendTransaction();
+  const { data: hash, sendTransaction, isPending } = useSendTransaction();
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -16,8 +16,10 @@ export function SendTransaction() {
   return (
     <form onSubmit={submit}>
       Address: <input name="address" placeholder="0xA0Cf…251e" required />
-      ETH value: <input name="value" placeholder="0.05" required /> 
-      <button type="submit">Send</button>
+      ETH value: <input name="value" placeholder="0.05" required />
+      <button type="submit" disabled={isPending}>
+        {isPending ? "Confirming..." : "Send"}
+      </button>
       {hash && <div>Transaction Hash: {hash}</div>}
     </form>
   );
